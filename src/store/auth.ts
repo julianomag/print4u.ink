@@ -112,6 +112,9 @@ supabase.auth.getSession().then(({ data: { session } }) => {
     useAuthStore.getState().loadProfile()
   }
   useAuthStore.setState({ loading: false })
+}).catch(() => {
+  // Se houver erro (Supabase não configurado), definir loading como false
+  useAuthStore.setState({ loading: false })
 })
 
 // Escutar mudanças de autenticação
