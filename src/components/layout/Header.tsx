@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { useAuthStore } from '@/store/auth'
-import { Printer, Menu, X, User, Settings, LogOut, CreditCard } from 'lucide-react'
+import { Printer, Menu, X, User, Settings, LogOut, CreditCard, Crown } from 'lucide-react'
 import toast from 'react-hot-toast'
 
 export function Header() {
@@ -22,6 +22,7 @@ export function Header() {
   }
 
   const planDetails = profile?.plan_details
+  const isFreePlan = planDetails?.planId === 'free'
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
@@ -67,10 +68,29 @@ export function Header() {
 
           {/* User Menu */}
           <div className="flex items-center space-x-4">
+            {/* Upgrade Plan Button - Only show for free plan */}
+            {isFreePlan && (
+              <div className="hidden sm:block">
+                <Link
+                  to="/billing"
+                  className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gradient-primary hover:shadow-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                >
+                  <Crown className="h-4 w-4 mr-1" />
+                  Upgrade
+                </Link>
+              </div>
+            )}
+
             {/* Plan Badge */}
             {planDetails && (
               <div className="hidden sm:block">
-                <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800">
+                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                  planDetails.planId === 'free' 
+                    ? 'bg-gray-100 text-gray-800' 
+                    : planDetails.planId === 'pro' 
+                    ? 'bg-blue-100 text-blue-800' 
+                    : 'bg-purple-100 text-purple-800'
+                }`}>
                   {planDetails.planId === 'free' ? 'Gratuito' : 
                    planDetails.planId === 'pro' ? 'Pro' : 'Enterprise'}
                 </span>
@@ -176,6 +196,19 @@ export function Header() {
               >
                 API Keys
               </Link>
+              
+              {/* Upgrade Plan Button - Mobile */}
+              {isFreePlan && (
+                <Link
+                  to="/billing"
+                  className="flex items-center px-3 py-2 text-primary-600 hover:text-primary-700 hover:bg-primary-50 rounded-md text-sm font-medium"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Crown className="h-4 w-4 mr-2" />
+                  Upgrade de Plano
+                </Link>
+              )}
+              
               <Link
                 to="/settings"
                 className="block px-3 py-2 text-gray-700 hover:text-primary-600 hover:bg-gray-100 rounded-md text-sm font-medium"
