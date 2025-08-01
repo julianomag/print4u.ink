@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>print4u.ink - SaaS de Impressão Remota</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-primary { background: linear-gradient(135deg, #f97316 0%, #a855f7 100%); }
+        .btn-primary { @apply bg-gradient-primary text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2; }
+        .btn-secondary { @apply bg-white text-gray-900 px-6 py-3 rounded-lg font-medium border border-gray-200 hover:bg-gray-50 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2; }
+        .card { @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="h-8 w-8 bg-gradient-primary rounded-lg flex items-center justify-center">
+                        <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                        </svg>
+                    </div>
+                    <span class="ml-2 text-xl font-bold text-gray-900">print4u.ink</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-900 hover:text-orange-600 px-3 py-2 text-sm font-medium">Início</a>
+                    <a href="login.html" class="text-gray-500 hover:text-orange-600 px-3 py-2 text-sm font-medium">Login</a>
+                    <a href="signup.html" class="text-gray-500 hover:text-orange-600 px-3 py-2 text-sm font-medium">Cadastro</a>
+                </nav>
+                <div class="flex items-center space-x-4">
+                    <a href="login.html" class="btn-secondary">Entrar</a>
+                    <a href="signup.html" class="btn-primary">Começar Grátis</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-20 bg-gradient-to-br from-orange-50 to-purple-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
+                    Impressão Remota
+                    <span class="bg-gradient-primary bg-clip-text text-transparent">Simplificada</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    Gerencie suas impressões de qualquer lugar. Conecte computadores, monitore jobs e controle custos com nossa plataforma SaaS completa.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="signup.html" class="btn-primary text-lg px-8 py-4">
+                        Começar Gratuitamente
+                    </a>
+                    <a href="#features" class="btn-secondary text-lg px-8 py-4">
+                        Ver Funcionalidades
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Tudo que você precisa para impressão remota
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Uma solução completa para empresas de todos os tamanhos
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card text-center">
+                    <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Controle Total</h3>
+                    <p class="text-gray-600">Gerencie todos os computadores e impressoras de uma interface centralizada.</p>
+                </div>
+                
+                <div class="card text-center">
+                    <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Impressão Remota</h3>
+                    <p class="text-gray-600">Envie documentos para impressão de qualquer lugar, a qualquer momento.</p>
+                </div>
+                
+                <div class="card text-center">
+                    <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Relatórios Detalhados</h3>
+                    <p class="text-gray-600">Acompanhe uso, custos e performance com relatórios em tempo real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Planos que crescem com você
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Escolha o plano ideal para sua empresa
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Free Plan -->
+                <div class="card">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Gratuito</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-4">
+                            R$ 0<span class="text-lg font-normal text-gray-500">/mês</span>
+                        </div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                50 impressões/mês
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                2 computadores
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Suporte por email
+                            </li>
+                        </ul>
+                        <a href="signup.html" class="btn-secondary w-full">Começar Grátis</a>
+                    </div>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="card border-2 border-orange-500 relative">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium">Mais Popular</span>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Profissional</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-4">
+                            R$ 29<span class="text-lg font-normal text-gray-500">/mês</span>
+                        </div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                500 impressões/mês
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                10 computadores
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Relatórios avançados
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Suporte prioritário
+                            </li>
+                        </ul>
+                        <a href="signup.html" class="btn-primary w-full">Escolher Pro</a>
+                    </div>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="card">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Empresarial</h3>
+                        <div class="text-4xl font-bold text-gray-900 mb-4">
+                            R$ 99<span class="text-lg font-normal text-gray-500">/mês</span>
+                        </div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Impressões ilimitadas
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Computadores ilimitados
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                API personalizada
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                Suporte 24/7
+                            </li>
+                        </ul>
+                        <a href="signup.html" class="btn-secondary w-full">Falar com Vendas</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="h-8 w-8 bg-gradient-primary rounded-lg flex items-center justify-center">
+                            <svg class="h-5 w-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" />
+                            </svg>
+                        </div>
+                        <span class="ml-2 text-xl font-bold">print4u.ink</span>
+                    </div>
+                    <p class="text-gray-400">
+                        Simplificando a impressão remota para empresas de todos os tamanhos.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Produto</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Funcionalidades</a></li>
+                        <li><a href="#" class="hover:text-white">Preços</a></li>
+                        <li><a href="#" class="hover:text-white">API</a></li>
+                        <li><a href="#" class="hover:text-white">Documentação</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Empresa</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Sobre</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Carreiras</a></li>
+                        <li><a href="#" class="hover:text-white">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Suporte</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white">Central de Ajuda</a></li>
+                        <li><a href="#" class="hover:text-white">Status</a></li>
+                        <li><a href="#" class="hover:text-white">Comunidade</a></li>
+                        <li><a href="#" class="hover:text-white">Contato</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 print4u.ink. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html> 
