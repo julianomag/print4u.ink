@@ -107,19 +107,38 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 }))
 
 // Inicializar estado de autenticação
-supabase.auth.getSession().then(({ data: { session } }) => {
-  if (session?.user) {
-    useAuthStore.setState({ user: session.user })
-    useAuthStore.getState().loadProfile()
+const initAuth = async () => {
+  try {
+    console.log('🔍 Verificando sessão do Supabase...')
+    const { data: { session } } = await supabase.auth.getSession()
+    
+    if (session?.user) {
+      console.log('✅ Usuário encontrado na sessão:', session.user.email)
+      useAuthStore.setState({ user: session.user })
+      useAuthStore.getState().loadProfile()
+    } else {
+      console.log('ℹ️ Nenhuma sessão encontrada')
+    }
+  } catch (error) {
+    console.warn('⚠️ Erro ao verificar sessão do Supabase:', error)
+  } finally {
+    useAuthStore.setState({ loading: false })
   }
-  useAuthStore.setState({ loading: false })
-}).catch(() => {
-  // Se houver erro (Supabase não configurado), definir loading como false
+}
+
+// Executar inicialização com timeout
+const timeoutPromise = new Promise((_, reject) => {
+  setTimeout(() => reject(new Error('Timeout')), 5000) // 5 segundos de timeout
+})
+
+Promise.race([initAuth(), timeoutPromise]).catch((error) => {
+  console.warn('⚠️ Timeout ou erro na inicialização do Supabase:', error)
   useAuthStore.setState({ loading: false })
 })
 
 // Escutar mudanças de autenticação
 supabase.auth.onAuthStateChange(async (event, session) => {
+  console.log('🔄 Mudança de estado de autenticação:', event, session?.user?.email)
   if (session?.user) {
     useAuthStore.setState({ user: session.user })
     await useAuthStore.getState().loadProfile()

@@ -125,28 +125,38 @@ function AuthCallback() {
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuthStore()
 
+  console.log('🔒 ProtectedRoute - loading:', loading, 'user:', user?.email)
+
   if (loading) {
+    console.log('⏳ ProtectedRoute - Mostrando LoadingSpinner')
     return <LoadingSpinner />
   }
 
   if (!user) {
+    console.log('❌ ProtectedRoute - Usuário não autenticado, redirecionando para /login')
     return <Navigate to="/login" replace />
   }
 
+  console.log('✅ ProtectedRoute - Usuário autenticado, mostrando conteúdo')
   return <>{children}</>
 }
 
 function AuthRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuthStore()
 
+  console.log('🔐 AuthRoute - loading:', loading, 'user:', user?.email)
+
   if (loading) {
+    console.log('⏳ AuthRoute - Mostrando LoadingSpinner')
     return <LoadingSpinner />
   }
 
   if (user) {
+    console.log('✅ AuthRoute - Usuário já autenticado, redirecionando para /dashboard')
     return <Navigate to="/dashboard" replace />
   }
 
+  console.log('✅ AuthRoute - Usuário não autenticado, mostrando formulário')
   return <>{children}</>
 }
 
@@ -154,11 +164,21 @@ export default function App() {
   const { loading } = useAuthStore()
   const isSupabaseConfigured = import.meta.env.VITE_SUPABASE_URL && import.meta.env.VITE_SUPABASE_ANON_KEY
 
+  console.log('🚀 App - loading:', loading, 'isSupabaseConfigured:', isSupabaseConfigured)
+
   // Se não estiver carregando e o Supabase não estiver configurado, mostrar página de setup
   if (!loading && !isSupabaseConfigured) {
+    console.log('⚠️ App - Supabase não configurado, mostrando SetupPage')
     return <SetupPage />
   }
 
+  // Se estiver carregando por muito tempo, mostrar página de setup
+  if (loading && !isSupabaseConfigured) {
+    console.log('⏳ App - Carregando com Supabase não configurado, mostrando SetupPage')
+    return <SetupPage />
+  }
+
+  console.log('✅ App - Renderizando rotas normalmente')
   return (
     <div className="App">
       <Routes>
