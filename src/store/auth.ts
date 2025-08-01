@@ -68,6 +68,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       }
     })
     
+    console.log('Google OAuth redirect URL:', `${window.location.origin}/auth/callback`)
     return { error }
   },
 
