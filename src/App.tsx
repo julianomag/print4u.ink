@@ -97,6 +97,30 @@ function SetupPage() {
   )
 }
 
+// Componente para processar o callback do OAuth
+function AuthCallback() {
+  const { loading } = useAuthStore()
+  
+  React.useEffect(() => {
+    // O Supabase automaticamente processa o callback e atualiza o estado
+    // Não precisamos fazer nada aqui, apenas aguardar
+  }, [])
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <LoadingSpinner />
+          <p className="mt-4 text-gray-600">Processando login...</p>
+        </div>
+      </div>
+    )
+  }
+
+  // Se não estiver carregando, redirecionar para o dashboard
+  return <Navigate to="/dashboard" replace />
+}
+
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const { user, loading } = useAuthStore()
 
@@ -148,6 +172,9 @@ export default function App() {
             <SignupForm />
           </AuthRoute>
         } />
+        
+        {/* OAuth Callback Route */}
+        <Route path="/auth/callback" element={<AuthCallback />} />
         
         {/* Protected Routes */}
         <Route path="/dashboard" element={
