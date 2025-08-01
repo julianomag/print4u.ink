@@ -7,11 +7,84 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .gradient-primary { background: linear-gradient(135deg, #f97316 0%, #a855f7 100%); }
-        .btn-primary { @apply bg-gradient-primary text-white px-6 py-3 rounded-lg font-medium hover:shadow-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2; }
-        .btn-secondary { @apply bg-white text-gray-900 px-6 py-3 rounded-lg font-medium border border-gray-200 hover:bg-gray-50 transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2; }
-        .card { @apply bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200; }
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
+        .gradient-primary { 
+            background: linear-gradient(135deg, #f97316 0%, #a855f7 100%); 
+        }
+        .btn-primary { 
+            background: linear-gradient(135deg, #f97316 0%, #a855f7 100%);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.2s;
+            transform: scale(1);
+            outline: none;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transform: scale(1.05);
+        }
+        .btn-primary:focus {
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.5);
+        }
+        .btn-secondary { 
+            background: white;
+            color: #111827;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            border: 1px solid #e5e7eb;
+            transition: all 0.2s;
+            transform: scale(1);
+            outline: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+        }
+        .btn-secondary:hover {
+            background: #f9fafb;
+            transform: scale(1.05);
+        }
+        .btn-secondary:focus {
+            box-shadow: 0 0 0 3px rgba(107, 114, 128, 0.5);
+        }
+        .card { 
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
+            padding: 1.5rem;
+            transition: box-shadow 0.2s;
+        }
+        .card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .input-field {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            outline: none;
+        }
+        .input-field:focus {
+            border-color: transparent;
+            box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.5);
+        }
+        .input-field::placeholder {
+            color: #9ca3af;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -29,9 +102,9 @@
                     <span class="ml-2 text-xl font-bold text-gray-900">print4u.ink</span>
                 </div>
                 <nav class="hidden md:flex space-x-8">
-                    <a href="index.html" class="text-gray-900 hover:text-orange-600 px-3 py-2 text-sm font-medium">Início</a>
-                    <a href="login.html" class="text-gray-500 hover:text-orange-600 px-3 py-2 text-sm font-medium">Login</a>
-                    <a href="signup.html" class="text-gray-500 hover:text-orange-600 px-3 py-2 text-sm font-medium">Cadastro</a>
+                    <a href="#features" class="text-gray-500 hover:text-orange-600 px-3 py-2 text-sm font-medium">Funcionalidades</a>
+                    <a href="#pricing" class="text-gray-500 hover:text-orange-600 px-3 py-2 text-sm font-medium">Preços</a>
+                    <a href="#about" class="text-gray-500 hover:text-orange-600 px-3 py-2 text-sm font-medium">Sobre</a>
                 </nav>
                 <div class="flex items-center space-x-4">
                     <a href="login.html" class="btn-secondary">Entrar</a>
@@ -56,62 +129,16 @@
                     <a href="signup.html" class="btn-primary text-lg px-8 py-4">
                         Começar Gratuitamente
                     </a>
-                    <a href="#features" class="btn-secondary text-lg px-8 py-4">
-                        Ver Funcionalidades
+                    <a href="#pricing" class="btn-secondary text-lg px-8 py-4">
+                        Ver Preços
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                    Tudo que você precisa para impressão remota
-                </h2>
-                <p class="text-xl text-gray-600">
-                    Uma solução completa para empresas de todos os tamanhos
-                </p>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card text-center">
-                    <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
-                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Controle Total</h3>
-                    <p class="text-gray-600">Gerencie todos os computadores e impressoras de uma interface centralizada.</p>
-                </div>
-                
-                <div class="card text-center">
-                    <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
-                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Impressão Remota</h3>
-                    <p class="text-gray-600">Envie documentos para impressão de qualquer lugar, a qualquer momento.</p>
-                </div>
-                
-                <div class="card text-center">
-                    <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
-                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Relatórios Detalhados</h3>
-                    <p class="text-gray-600">Acompanhe uso, custos e performance com relatórios em tempo real.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Pricing Section -->
-    <section class="py-20 bg-gray-50">
+    <section id="pricing" class="py-20 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -234,6 +261,67 @@
         </div>
     </section>
 
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Tudo que você precisa para impressão remota
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Uma solução completa para empresas de todos os tamanhos
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card text-center">
+                    <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Controle Total</h3>
+                    <p class="text-gray-600">Gerencie todos os computadores e impressoras de uma interface centralizada.</p>
+                </div>
+                
+                <div class="card text-center">
+                    <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Impressão Remota</h3>
+                    <p class="text-gray-600">Envie documentos para impressão de qualquer lugar, a qualquer momento.</p>
+                </div>
+                
+                <div class="card text-center">
+                    <div class="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mx-auto mb-4">
+                        <svg class="h-6 w-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Relatórios Detalhados</h3>
+                    <p class="text-gray-600">Acompanhe uso, custos e performance com relatórios em tempo real.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+                    Sobre o print4u.ink
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Simplificando a impressão remota para empresas de todos os tamanhos. 
+                    Nossa missão é tornar a gestão de impressão simples, eficiente e acessível.
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -256,8 +344,8 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Produto</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">Funcionalidades</a></li>
-                        <li><a href="#" class="hover:text-white">Preços</a></li>
+                        <li><a href="#features" class="hover:text-white">Funcionalidades</a></li>
+                        <li><a href="#pricing" class="hover:text-white">Preços</a></li>
                         <li><a href="#" class="hover:text-white">API</a></li>
                         <li><a href="#" class="hover:text-white">Documentação</a></li>
                     </ul>
@@ -266,7 +354,7 @@
                 <div>
                     <h4 class="text-lg font-semibold mb-4">Empresa</h4>
                     <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white">Sobre</a></li>
+                        <li><a href="#about" class="hover:text-white">Sobre</a></li>
                         <li><a href="#" class="hover:text-white">Blog</a></li>
                         <li><a href="#" class="hover:text-white">Carreiras</a></li>
                         <li><a href="#" class="hover:text-white">Contato</a></li>
