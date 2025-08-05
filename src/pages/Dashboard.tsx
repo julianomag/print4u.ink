@@ -80,23 +80,26 @@ export function Dashboard() {
           {
             id: '1',
             computer_name: 'PC-Sala01',
-            status: 'online',
+            status: 'online' as const,
             user_id: userId,
-            created_at: new Date().toISOString()
+            created_at: new Date().toISOString(),
+            last_seen: new Date().toISOString()
           },
           {
             id: '2',
             computer_name: 'PC-Escritório',
-            status: 'online',
+            status: 'online' as const,
             user_id: userId,
-            created_at: new Date().toISOString()
+            created_at: new Date().toISOString(),
+            last_seen: new Date().toISOString()
           },
           {
             id: '3',
             computer_name: 'PC-Sala02',
-            status: 'offline',
+            status: 'offline' as const,
             user_id: userId,
-            created_at: new Date().toISOString()
+            created_at: new Date().toISOString(),
+            last_seen: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
           }
         ]
 
@@ -199,65 +202,83 @@ export function Dashboard() {
         totalComputers: 3
       }
       
-      const mockRecentJobs = [
-        {
-          id: '1',
-          title: 'Relatório Mensal.pdf',
-          status: 'completed',
-          created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
-          user_id: userId
-        },
-        {
-          id: '2',
-          title: 'Apresentação.pptx',
-          status: 'pending',
-          created_at: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
-          user_id: userId
-        },
-        {
-          id: '3',
-          title: 'Contrato.docx',
-          status: 'printing',
-          created_at: new Date(Date.now() - 5 * 60 * 1000).toISOString(),
-          user_id: userId
-        },
-        {
-          id: '4',
-          title: 'Documento.pdf',
-          status: 'error',
-          created_at: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
-          user_id: userId
-        },
-        {
-          id: '5',
-          title: 'Fatura.pdf',
-          status: 'completed',
-          created_at: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
-          user_id: userId
-        }
-      ]
+              const mockRecentJobs = [
+          {
+            id: '1',
+            title: 'Relatório Mensal.pdf',
+            status: 'completed' as const,
+            created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+            user_id: userId,
+            printer_id: 'printer-1',
+            computer_id: '1',
+            file_storage_path: '/files/relatorio.pdf'
+          },
+          {
+            id: '2',
+            title: 'Apresentação.pptx',
+            status: 'pending' as const,
+            created_at: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
+            user_id: userId,
+            printer_id: 'printer-2',
+            computer_id: '2',
+            file_storage_path: '/files/apresentacao.pptx'
+          },
+          {
+            id: '3',
+            title: 'Contrato.docx',
+            status: 'printing' as const,
+            created_at: new Date(Date.now() - 5 * 60 * 1000).toISOString(),
+            user_id: userId,
+            printer_id: 'printer-1',
+            computer_id: '1',
+            file_storage_path: '/files/contrato.docx'
+          },
+          {
+            id: '4',
+            title: 'Documento.pdf',
+            status: 'error' as const,
+            created_at: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
+            user_id: userId,
+            printer_id: 'printer-3',
+            computer_id: '3',
+            file_storage_path: '/files/documento.pdf'
+          },
+          {
+            id: '5',
+            title: 'Fatura.pdf',
+            status: 'completed' as const,
+            created_at: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+            user_id: userId,
+            printer_id: 'printer-2',
+            computer_id: '2',
+            file_storage_path: '/files/fatura.pdf'
+          }
+        ]
 
       const mockComputers = [
         {
           id: '1',
           computer_name: 'PC-Sala01',
-          status: 'online',
+          status: 'online' as const,
           user_id: userId,
-          created_at: new Date().toISOString()
+          created_at: new Date().toISOString(),
+          last_seen: new Date().toISOString()
         },
         {
           id: '2',
           computer_name: 'PC-Escritório',
-          status: 'online',
+          status: 'online' as const,
           user_id: userId,
-          created_at: new Date().toISOString()
+          created_at: new Date().toISOString(),
+          last_seen: new Date().toISOString()
         },
         {
           id: '3',
           computer_name: 'PC-Sala02',
-          status: 'offline',
+          status: 'offline' as const,
           user_id: userId,
-          created_at: new Date().toISOString()
+          created_at: new Date().toISOString(),
+          last_seen: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString()
         }
       ]
       

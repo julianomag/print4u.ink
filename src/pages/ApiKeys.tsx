@@ -335,7 +335,7 @@ export function ApiKeys() {
                     className="w-full"
                     onClick={() => {
                       // Aqui você pode implementar o download do cliente
-                      toast.info('Download do cliente será implementado em breve')
+                      toast('Download do cliente será implementado em breve')
                     }}
                   >
                     <Download className="h-4 w-4 mr-2" />
