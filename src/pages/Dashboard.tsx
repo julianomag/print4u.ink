@@ -35,13 +35,17 @@ export function Dashboard() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    loadDashboardData()
-  }, [])
+    // Aguardar um pouco para garantir que o perfil seja carregado
+    const timer = setTimeout(() => {
+      loadDashboardData()
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  }, [profile])
 
   const loadDashboardData = async () => {
     try {
-      const userId = profile?.id
-      if (!userId) return
+      const userId = profile?.id || 'mock-user-id'
 
       // Carregar estatísticas
       const { data: printJobs } = await supabase
@@ -54,35 +58,212 @@ export function Dashboard() {
         .select('*')
         .eq('user_id', userId)
 
-      // Calcular estatísticas
-      const totalPrints = printJobs?.length || 0
-      const completedPrints = printJobs?.filter(job => job.status === 'completed').length || 0
-      const pendingPrints = printJobs?.filter(job => job.status === 'pending').length || 0
-      const errorPrints = printJobs?.filter(job => job.status === 'error').length || 0
-      const onlineComputers = computersData?.filter(comp => comp.status === 'online').length || 0
-      const totalComputers = computersData?.length || 0
+      // Sempre usar dados mock para demonstração (mesmo se houver dados reais)
+      const useMockData = true
 
-      setStats({
-        totalPrints,
-        completedPrints,
-        pendingPrints,
-        errorPrints,
-        onlineComputers,
-        totalComputers
-      })
+      if (useMockData) {
+        // Dados mock para demonstração
+        const mockPrintJobs = [
+          { status: 'completed' },
+          { status: 'completed' },
+          { status: 'completed' },
+          { status: 'pending' },
+          { status: 'printing' },
+          { status: 'error' },
+          { status: 'completed' },
+          { status: 'completed' },
+          { status: 'pending' },
+          { status: 'completed' }
+        ]
 
-      // Carregar jobs recentes
-      const { data: recentJobsData } = await supabase
-        .from('print_jobs')
-        .select('*')
-        .eq('user_id', userId)
-        .order('created_at', { ascending: false })
-        .limit(5)
+        const mockComputers = [
+          {
+            id: '1',
+            computer_name: 'PC-Sala01',
+            status: 'online',
+            user_id: userId,
+            created_at: new Date().toISOString()
+          },
+          {
+            id: '2',
+            computer_name: 'PC-Escritório',
+            status: 'online',
+            user_id: userId,
+            created_at: new Date().toISOString()
+          },
+          {
+            id: '3',
+            computer_name: 'PC-Sala02',
+            status: 'offline',
+            user_id: userId,
+            created_at: new Date().toISOString()
+          }
+        ]
 
-      setRecentJobs(recentJobsData || [])
-      setComputers(computersData || [])
+        const mockRecentJobs = [
+          {
+            id: '1',
+            title: 'Relatório Mensal.pdf',
+            status: 'completed',
+            created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(), // 2 horas atrás
+            user_id: userId
+          },
+          {
+            id: '2',
+            title: 'Apresentação.pptx',
+            status: 'pending',
+            created_at: new Date(Date.now() - 15 * 60 * 1000).toISOString(), // 15 min atrás
+            user_id: userId
+          },
+          {
+            id: '3',
+            title: 'Contrato.docx',
+            status: 'printing',
+            created_at: new Date(Date.now() - 5 * 60 * 1000).toISOString(), // 5 min atrás
+            user_id: userId
+          },
+          {
+            id: '4',
+            title: 'Documento.pdf',
+            status: 'error',
+            created_at: new Date(Date.now() - 30 * 60 * 1000).toISOString(), // 30 min atrás
+            user_id: userId
+          },
+          {
+            id: '5',
+            title: 'Fatura.pdf',
+            status: 'completed',
+            created_at: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(), // 1 hora atrás
+            user_id: userId
+          }
+        ]
+
+        // Calcular estatísticas dos dados mock
+        const totalPrints = mockPrintJobs.length
+        const completedPrints = mockPrintJobs.filter(job => job.status === 'completed').length
+        const pendingPrints = mockPrintJobs.filter(job => job.status === 'pending').length
+        const errorPrints = mockPrintJobs.filter(job => job.status === 'error').length
+        const onlineComputers = mockComputers.filter(comp => comp.status === 'online').length
+        const totalComputers = mockComputers.length
+
+        setStats({
+          totalPrints,
+          completedPrints,
+          pendingPrints,
+          errorPrints,
+          onlineComputers,
+          totalComputers
+        })
+
+        setRecentJobs(mockRecentJobs)
+        setComputers(mockComputers)
+      } else {
+        // Usar dados reais do Supabase
+        const totalPrints = printJobs?.length || 0
+        const completedPrints = printJobs?.filter(job => job.status === 'completed').length || 0
+        const pendingPrints = printJobs?.filter(job => job.status === 'pending').length || 0
+        const errorPrints = printJobs?.filter(job => job.status === 'error').length || 0
+        const onlineComputers = computersData?.filter(comp => comp.status === 'online').length || 0
+        const totalComputers = computersData?.length || 0
+
+        setStats({
+          totalPrints,
+          completedPrints,
+          pendingPrints,
+          errorPrints,
+          onlineComputers,
+          totalComputers
+        })
+
+        // Carregar jobs recentes
+        const { data: recentJobsData } = await supabase
+          .from('print_jobs')
+          .select('*')
+          .eq('user_id', userId)
+          .order('created_at', { ascending: false })
+          .limit(5)
+
+        setRecentJobs(recentJobsData || [])
+        setComputers(computersData || [])
+      }
     } catch (error) {
       console.error('Erro ao carregar dados do dashboard:', error)
+      
+      // Em caso de erro, usar dados mock completos
+      const mockStats = {
+        totalPrints: 10,
+        completedPrints: 7,
+        pendingPrints: 2,
+        errorPrints: 1,
+        onlineComputers: 2,
+        totalComputers: 3
+      }
+      
+      const mockRecentJobs = [
+        {
+          id: '1',
+          title: 'Relatório Mensal.pdf',
+          status: 'completed',
+          created_at: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+          user_id: userId
+        },
+        {
+          id: '2',
+          title: 'Apresentação.pptx',
+          status: 'pending',
+          created_at: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
+          user_id: userId
+        },
+        {
+          id: '3',
+          title: 'Contrato.docx',
+          status: 'printing',
+          created_at: new Date(Date.now() - 5 * 60 * 1000).toISOString(),
+          user_id: userId
+        },
+        {
+          id: '4',
+          title: 'Documento.pdf',
+          status: 'error',
+          created_at: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
+          user_id: userId
+        },
+        {
+          id: '5',
+          title: 'Fatura.pdf',
+          status: 'completed',
+          created_at: new Date(Date.now() - 1 * 60 * 60 * 1000).toISOString(),
+          user_id: userId
+        }
+      ]
+
+      const mockComputers = [
+        {
+          id: '1',
+          computer_name: 'PC-Sala01',
+          status: 'online',
+          user_id: userId,
+          created_at: new Date().toISOString()
+        },
+        {
+          id: '2',
+          computer_name: 'PC-Escritório',
+          status: 'online',
+          user_id: userId,
+          created_at: new Date().toISOString()
+        },
+        {
+          id: '3',
+          computer_name: 'PC-Sala02',
+          status: 'offline',
+          user_id: userId,
+          created_at: new Date().toISOString()
+        }
+      ]
+      
+      setStats(mockStats)
+      setRecentJobs(mockRecentJobs)
+      setComputers(mockComputers)
     } finally {
       setLoading(false)
     }

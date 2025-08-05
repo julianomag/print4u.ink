@@ -22,7 +22,7 @@ export function Header() {
   }
 
   const planDetails = profile?.plan_details
-  const isFreePlan = planDetails?.planId === 'free'
+  const isFreePlan = planDetails?.planId === 'free' || !planDetails
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-200">
@@ -30,7 +30,7 @@ export function Header() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link to="/dashboard" className="flex items-center space-x-2">
+            <Link to="/dashboard" className="flex items-center space-x-2 hover:shadow-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 rounded-lg p-1">
               <div className="h-8 w-8 bg-gradient-primary rounded-lg flex items-center justify-center">
                 <Printer className="h-5 w-5 text-white" />
               </div>
@@ -81,21 +81,7 @@ export function Header() {
               </div>
             )}
 
-            {/* Plan Badge */}
-            {planDetails && (
-              <div className="hidden sm:block">
-                <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                  planDetails.planId === 'free' 
-                    ? 'bg-gray-100 text-gray-800' 
-                    : planDetails.planId === 'pro' 
-                    ? 'bg-blue-100 text-blue-800' 
-                    : 'bg-purple-100 text-purple-800'
-                }`}>
-                  {planDetails.planId === 'free' ? 'Gratuito' : 
-                   planDetails.planId === 'pro' ? 'Pro' : 'Enterprise'}
-                </span>
-              </div>
-            )}
+
 
             {/* User Menu */}
             <div className="relative">
@@ -103,12 +89,27 @@ export function Header() {
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                 className="flex items-center space-x-2 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
               >
-                <div className="h-8 w-8 bg-gradient-primary rounded-full flex items-center justify-center">
-                  <User className="h-4 w-4 text-white" />
+                <div className="h-8 w-8 rounded-full flex items-center justify-center">
+                  <User className="h-4 w-4 text-gray-600" />
                 </div>
-                <span className="hidden md:block text-gray-700 font-medium">
-                  {profile?.company_name || user?.email}
-                </span>
+                <div className="hidden md:flex items-center space-x-2">
+                  <span className="text-gray-700 font-medium">
+                    {profile?.company_name || user?.email}
+                  </span>
+                  {/* Plan Badge - Now positioned next to user name */}
+                  {(planDetails || !profile) && (
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                      !planDetails || planDetails.planId === 'free' 
+                        ? 'bg-gray-100 text-gray-800' 
+                        : planDetails.planId === 'pro' 
+                        ? 'bg-blue-100 text-blue-800' 
+                        : 'bg-purple-100 text-purple-800'
+                    }`}>
+                      {!planDetails || planDetails.planId === 'free' ? 'Gratuito' : 
+                       planDetails.planId === 'pro' ? 'Pro' : 'Enterprise'}
+                    </span>
+                  )}
+                </div>
               </button>
 
               {/* Dropdown Menu */}
