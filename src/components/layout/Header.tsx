@@ -89,7 +89,7 @@ export function Header() {
                 onClick={() => setUserMenuOpen(!userMenuOpen)}
                 className="flex items-center space-x-2 text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
               >
-                <div className="h-8 w-8 rounded-full flex items-center justify-center">
+                <div className="h-8 w-8 rounded-full flex items-center justify-center border-2 border-gray-300">
                   <User className="h-4 w-4 text-gray-600" />
                 </div>
                 <div className="hidden md:flex items-center space-x-2">

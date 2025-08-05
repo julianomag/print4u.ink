@@ -21,7 +21,7 @@ type PrintJob = Database['public']['Tables']['print_jobs']['Row']
 type Computer = Database['public']['Tables']['computers']['Row']
 
 export function Dashboard() {
-  const { profile } = useAuthStore()
+  const { profile, user } = useAuthStore()
   const [stats, setStats] = useState({
     totalPrints: 0,
     completedPrints: 0,
@@ -304,7 +304,7 @@ export function Dashboard() {
             Dashboard
           </h1>
           <p className="mt-2 text-gray-600">
-            Bem-vindo de volta, {profile?.company_name || 'Usuário'}!
+            Bem-vindo de volta, {profile?.company_name || user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'Usuário'}!
           </p>
         </div>
 
